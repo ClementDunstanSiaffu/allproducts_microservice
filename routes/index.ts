@@ -11,7 +11,7 @@ class Routes{
         
         app.post("/postAllProducts",(req:Request,res:Response)=>{
             const date = Date.now()
-            const allProductsDbInstance = new AllProductsDbInstance({id:date,...req.body});
+            const allProductsDbInstance = new AllProductsDbInstance({id:date,...req.body.where});
             allProductsDbInstance.save((err,docs)=>{
                 if(!err){
                     res.status(200).json({"status":true});

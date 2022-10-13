@@ -21,7 +21,7 @@ class Routes{
             })
         })
         
-        app.get("/getAllProducts",(req:Request,res:Response)=>{
+        app.post("/getAllProducts",(req:Request,res:Response)=>{
             AllProductsDbInstance.find((err,docs)=>{
                 if(!err){
                     res.status(200).json(docs);

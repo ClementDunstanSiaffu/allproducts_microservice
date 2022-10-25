@@ -33,6 +33,16 @@ class Routes{
             })
         })
 
+        app.delete("/deleteAllProduct",async(req:Request,res:Response)=>{
+            try{
+                await AllProductsDbInstance.findOneAndDelete({id:req.body.where.id});
+                res.status(200).json({"status":true});
+            }
+            catch(err){
+                res.status(400).json({"status":false});
+            }
+        })
+
         app.post("/searchProduct",async(req:Request,res:Response)=>{
             const {searchedKey} = req.body.where;
             AllProductsDbInstance.find((err,docs)=>{
@@ -43,8 +53,6 @@ class Routes{
                     res.status(200).json({"status":false});
                 }
             })
-            
-            
         })
     }
 }

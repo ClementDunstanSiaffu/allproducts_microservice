@@ -26,7 +26,8 @@ class Routes{
         app.post("/getAllProducts",(req:Request,res:Response)=>{
             AllProductsDbInstance.find((err,docs)=>{
                 if(!err){
-                    res.status(200).json(docs);
+                    let categoryArray = helper.getCategoryProducts(req.body.where.categoryId,docs)
+                    res.status(200).json(categoryArray);
                 }else{
                     res.status(400).json({"status":false});
                 }

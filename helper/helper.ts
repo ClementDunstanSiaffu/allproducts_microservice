@@ -1,6 +1,26 @@
 
+type ProductObject = {
+    id:String,
+    productImage:String,
+    productName:String,
+    productDescription:String,
+    productPrice:Number,
+    available:String,
+    categoryId:String
+}
+
 
 class Helper{
+
+    getCategoryProducts(categoryId:String,productArray:any[]):any[]{
+        const categoryProducts = productArray.reduce((newArr,item)=>{
+            if (item.categoryId===categoryId){
+                newArr.push(item);
+            }
+            return newArr;
+        },[])
+        return categoryProducts;
+    }
 
     getSearchedItems(searchedKey:String,contentsArray:any[] ):any[]{
         let defaultArray = [];
